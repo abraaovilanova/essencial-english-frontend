@@ -88,6 +88,31 @@ function App() {
       } />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/" element={
+        <div className="App">
+        <div className="tags">
+               {tags.length? tags.map((tag,index) => {
+                 const tagName = tag
+                 return (
+               
+                   <button 
+                     style={active === index ? { backgroundColor: 'rgb(255, 194, 102)' } : {}}
+                     className='tag-btn' onClick={()=>{
+                       setActive(index)
+                       getSentenceByTag(tagName)}}> 
+                     {tag} 
+                   </button>
+                 )
+                 }):''}
+           </div>
+               <div className="main-text">
+                 <h3>{sentence ? parse(sentence?.text) : ' '}</h3>
+               </div>
+               <button className="add-btn" onClick={()=>getSentence()}>New sentence</button>
+               <Footer />
+        </div>
+      
+      } />  
 
     </Routes>
                

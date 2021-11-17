@@ -27,13 +27,12 @@ function App() {
   const [active, setActive] = useState()
 
 
-  // useEffect(()=>{
-  //   axios.get(base_url + '/tags').then(res => {
-  //     setTags(res.data.tags)
-  //     console.log(res.data.tags)
-  //   })
+  useEffect(()=>{
+    axios.get(base_url + '/tags').then(res => {
+      setTags(res.data.tags)
+    })
 
-  // },[])
+  },[])
 
   
   const getSentence = () => {
@@ -49,10 +48,10 @@ function App() {
   }
 
   
-  // useEffect(()=>{
-  //   getSentence()
+  useEffect(()=>{
+    getSentence()
 
-  // },[getSentenceByTag])
+  },[getSentenceByTag])
 
 
   return (

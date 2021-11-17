@@ -12,30 +12,28 @@ import {
   Link
 } from "react-router-dom";
 import parse from 'html-react-parser'
+import Login from './components/Login/Login'
+import SingUp from './components/SingUp/SingUp'
 
 
 
 function App() {
-
+  const base_url_prod = 'https://essential-english-api.herokuapp.com/sentence'
+  const base_url_dev = 'http://localhost:3001/sentence'
+  const base_url = base_url_dev
   const [sentences, setSentences] = useState('')
   const [sentence, setSentence] = useState('')
   const [tags, setTags] = useState('')
   const [active, setActive] = useState()
 
-  
+
   // useEffect(()=>{
-  //   axios.get('http://localhost:3001/sentence').then(res => {
-  //     setSentences(res.data.sentences)
-  // })
+  //   axios.get(base_url + '/tags').then(res => {
+  //     setTags(res.data.tags)
+  //     console.log(res.data.tags)
+  //   })
+
   // },[])
-
-  useEffect(()=>{
-    axios.get('https://essential-english-api.herokuapp.com/sentence/tags').then(res => {
-      setTags(res.data.tags)
-      console.log(res.data.tags)
-    })
-
-  },[])
 
   
   const getSentence = () => {
@@ -46,15 +44,15 @@ function App() {
   }
   
   const getSentenceByTag = async (tag) => {
-    const res = await axios.get('https://essential-english-api.herokuapp.com/sentence/sentences/'+tag)
+    const res = await axios.get(base_url + '/sentences/' +tag)
     setSentences(res.data.sentences)
   }
 
   
-  useEffect(()=>{
-    getSentence()
+  // useEffect(()=>{
+  //   getSentence()
 
-  },[getSentenceByTag])
+  // },[getSentenceByTag])
 
 
   return (
@@ -88,6 +86,8 @@ function App() {
       } />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/singup' element={<SingUp />} />
       <Route path="/" element={
         <div className="App">
         <div className="tags">

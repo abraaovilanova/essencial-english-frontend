@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import './SingUp.css'
 
 export default ()=>{
@@ -6,9 +7,11 @@ export default ()=>{
     const [email, setEmail] = useState(undefined)
     const [password, setPassword] = useState(undefined)
 
-    const handleSubmitLogin = (e) => {
+    const handleSubmitLogin = async (e) => {
         e.preventDefault()
         console.log(email, password,name)
+        const responser = await axios.post('http://localhost:3001/auth/register', {name, email, password})
+        console.log(responser)
     }
 
     return (
@@ -20,8 +23,8 @@ export default ()=>{
                     onChange={(e)=>setName(e.target.value)}
                 />
                     <br />
-                <label for="fname">Email:</label><br />
-                <input className="input-box" type="text" id="fname" name="fname" 
+                <label for="femail">Email:</label><br />
+                <input className="input-box" type="text" id="femail" name="femail" 
                     value={ email } 
                     onChange={(e)=>setEmail(e.target.value)}
                 />

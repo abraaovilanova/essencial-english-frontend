@@ -9,11 +9,9 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
-import parse from 'html-react-parser'
 import Login from './components/Login/Login'
-import SingUp from './components/SingUp/SingUp'
+import SignUp from './components/SignUp/SignUp'
 import Home from './components/Home/Home'
 
 
@@ -22,17 +20,15 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar /><br />
-
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/singup' element={<SingUp />} />
-        <Route path="/" element={<Home />} />  
+        <Route path='/signup' element={<SignUp />} />
+        <Route exact path="/" element={<Home />} />  
     </Routes>
-               
-
+    <Footer />
     </BrowserRouter>
   
 

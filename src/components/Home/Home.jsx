@@ -1,10 +1,12 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import parse from 'html-react-parser'
-import Footer from '../Footer/Footer'
+import { connect } from 'react-redux'
 import './Home.css'
+import { SignUpAuthAction } from '../../redux/actions/authActions'
 
-export default ()=>{
+const Home = (props)=>{
+  const { auth } = props
   const base_url_prod = 'https://essential-english-api.herokuapp.com/sentence'
   const base_url_dev = 'http://localhost:3001/sentence'
   const base_url = base_url_dev
@@ -43,12 +45,17 @@ export default ()=>{
 
     return (
         <div className="Home">
+          {
+            auth.isLoggedIn? <h1> Olá, {auth.user.name} </h1> : ''
+          }
+          
            <div className="tags">
                   {tags.length? tags.map((tag,index) => {
                     const tagName = tag
                     return (
                   
                       <button 
+                        key={tagName}
                         style={active === index ? { backgroundColor: 'rgb(255, 194, 102)' } : {}}
                         className='tag-btn' onClick={()=>{
                           setActive(index)
@@ -62,7 +69,22 @@ export default ()=>{
                     <h3>{sentence ? parse(sentence?.text) : ' '}</h3>
                   </div>
                   <button className="add-btn" onClick={()=>getSentence()}>New sentence</button>
-                  <Footer />
            </div>
     )
 }
+
+const mapStateToProps = (state) => {
+  return {
+      auth: state,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+      singin: (userState) => {
+          dispatch(SignUpAuthAction(userState))
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

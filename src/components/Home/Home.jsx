@@ -55,7 +55,7 @@ const Home = (props)=>{
 
   const handleLikeBtn = async () =>{
     const userId = auth.user._id
-    const res = await axios.post('http://localhost:3001/fav/'+ sentence._id, { favoriteUserId: userId})
+    const res = await axios.post(base_url + '/fav/' + sentence._id, { favoriteUserId: userId})
     const indexOfSentence = sentences.indexOf(sentence)
     const newArray = [...sentences]
 

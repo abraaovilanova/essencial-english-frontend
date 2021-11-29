@@ -7,20 +7,22 @@ import { SignUpAuthAction } from '../../redux/actions/authActions'
 
 import { FaHeart, FaRegHeart, FaPlus } from "react-icons/fa"
 
+import { url } from '../../api/api'
+
 
 const Home = (props)=>{
 
-  
-  const base_url_prod = 'https://essential-english-api.herokuapp.com'
-  const base_url_dev = 'http://localhost:3001'
-  const base_url = base_url_prod
+  const base_url = url
 
   const { auth } = props
-  const [sentences, setSentences] = useState('')
+  const [sentences, setSentences] = useState([])
   const [sentence, setSentence] = useState('')
   const [tags, setTags] = useState('')
   const [active, setActive] = useState()
   const [like, setLike] = useState(false)
+  const [showLike, setShowLike] = useState(false)
+  const [randInt, setRandInt] = useState(0)
+
 
 
 
@@ -31,10 +33,40 @@ const Home = (props)=>{
 
   },[])
 
-  const getSentence = () => {
+  const nextSentence = () => {
     const max = sentences.length
-    const num = Math.floor((Math.random()*max+1))
-    const selectedSentence = sentences.length ? sentences[num-1] : {text:'Welcome to my english app! Please, select a tag'}
+    const rand = Math.floor((Math.random()*(max)+0))
+    const selectedSentence = sentences.length > 0 ? sentences[rand] : {
+      text:'Welcome to my english app! Please, select a tag',
+      favoriteUserId: ['admin'],
+    }
+
+    if(selectedSentence?.text != 'Welcome to my english app! Please, select a tag'){
+      setShowLike(true)
+    }
+
+
+    if(selectedSentence.favoriteUserId?.includes(auth.user._id)){
+      setLike(true)
+    }else{
+      setLike(false)
+    }
+
+    setSentence(selectedSentence)
+  }
+
+
+  const getSentence = () => {
+    const rand = sentences.length -1
+    const selectedSentence = sentences.length > 0 ? sentences[rand] : {
+      text:'Welcome to my english app! Please, select a tag',
+      favoriteUserId: ['admin'],
+    }
+
+    if(selectedSentence?.text != 'Welcome to my english app! Please, select a tag'){
+      setShowLike(true)
+    }
+
 
     if(selectedSentence.favoriteUserId?.includes(auth.user._id)){
       setLike(true)
@@ -57,18 +89,25 @@ const Home = (props)=>{
     const userId = auth.user._id
     const res = await axios.post(base_url + '/fav/' + sentence._id, { favoriteUserId: userId})
     const indexOfSentence = sentences.indexOf(sentence)
-    const newArray = [...sentences]
+    const newArray = [...sentences, res.data.sentenceUpdate]
+    newArray.splice(indexOfSentence, 1)
 
-    newArray[indexOfSentence].favoriteUserId =[...newArray[indexOfSentence].favoriteUserId, userId]
-    newArray[indexOfSentence].favoriteCount =  newArray[indexOfSentence].favoriteCount + 1
+
+    if(res.data.sentenceUpdate.favoriteUserId?.includes(auth.user._id)){
+      setLike(true)
+    }else{
+      setLike(false)
+    }
+
     setSentences(newArray)
-    setLike(!like)
+    const max = newArray.indexOf(res.data.sentenceUpdate)-1
+    setRandInt(newArray.indexOf(res.data.sentenceUpdate))
   }
 
   useEffect(()=>{
     getSentence()
 
-  },[sentences.length])
+  },[sentences, setSentences])
 
 
     return (
@@ -100,28 +139,32 @@ const Home = (props)=>{
                     <h3>{sentence ? parse(sentence?.text) : ' '}</h3>
                     <div className="icons-btns">
                       <div className="icon-btn">
-                        {like?
-                        <>
-                          <FaHeart 
-                            style={{color:'rgb(255, 194, 102)'}} 
-                            onClick={handleLikeBtn} /> 
-                            <span className="like-btn-txt">
-                              {sentence.favoriteCount?sentence.favoriteCount:'0'}
-                            </span>
-                          </>
-                          :
+                        {showLike && auth.isLoggedIn?
+                          (like?
                           <>
-                            <FaRegHeart style={{color:'rgb(255, 194, 102)'}} onClick={handleLikeBtn}/>
-                            <span className="like-btn-txt">
-                              {sentence.favoriteCount?sentence.favoriteCount:'0'}
+                            <FaHeart className='like-btn-active'
+                              style={{color:'red'}} 
+                              onClick={handleLikeBtn} /> 
+                              <span className="like-btn-txt" style={{color:'red'}}>
+                                {sentence.favoriteCount?sentence.favoriteCount:'0'}
                               </span>
-                          </>  
-                          }
+                            </>
+                            :
+                            <>
+                              <FaRegHeart /* style={{color:'gray'}}*/ onClick={handleLikeBtn}/>
+                              <span className="like-btn-txt">
+                                {sentence.favoriteCount?sentence.favoriteCount:'0'}
+                                </span>
+                            </>  
+                          )
+                        :
+                        ('')
+                        }
                       </div>
                     </div>
                   </div>
                   <br />
-                  <button className="add-btn" onClick={getSentence}>{ <FaPlus />} New sentence</button>
+                  <button className="add-btn" onClick={nextSentence}>{ <FaPlus />} New sentence</button>
            </div>
     )
 }

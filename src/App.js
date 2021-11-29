@@ -13,12 +13,14 @@ import {
 import Login from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp'
 import Home from './components/Home/Home'
+import LikePage from './components/LikePage/LikePage'
 
 
 
 function App() {
   return (
     <BrowserRouter>
+    <div className="App">
       <Navbar /><br />
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -26,9 +28,11 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route exact path="/" element={<Home />} />  
+        <Route exact path="/" element={<Home />} />
+        <Route path='/likes' element={ <LikePage />} />  
     </Routes>
     <Footer />
+    </div>
     </BrowserRouter>
   
 

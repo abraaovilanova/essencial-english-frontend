@@ -7,21 +7,23 @@ import {
     useNavigate
   } from "react-router-dom";
  
+  import { FaHeart, FaRegHeart, FaPlus } from "react-icons/fa"
+  import { AiFillHome, AiFillInfoCircle,AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
 
 const Navbar = (props) => {
     const { auth, logout } = props
     const history = useNavigate()
     return (
         <ul>
-            <li><Link to="/home">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
+            <li><Link to="/home"><AiFillHome /> Home</Link></li>
+            <li><Link to="/about"><AiFillInfoCircle /> About</Link></li>
             {auth.isLoggedIn?(
                 <>
-                    <li><Link to="/login">Likes</Link></li>
+                    <li><Link to="/likes"><FaHeart /> Likes</Link></li>
                     <li style={{float:"right"}}><Link to="/" onClick={()=>{
                         logout(history)
-                    }}>Logout</Link></li>
-                    <li style={{float:"right"}}><a>{auth.user.name}</a></li>
+                    }}><AiOutlineLogout /> Logout</Link></li>
+                    <li style={{float:"right"}}> <a><AiOutlineUser /> {auth.user.name}</a></li>
                 </>
             ):(
                 <>

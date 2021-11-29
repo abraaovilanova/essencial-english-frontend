@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
   }
   
   .main-text{
@@ -20,6 +21,14 @@
     border-radius: 20px;
     /* box-shadow: 5px 5px rgb(224,224,224); */
     box-shadow: 5px 5px  rgb(255, 194, 102);
+    background-color: blanchedalmond;
+  }
+
+  .main-text b{
+    color: green;
+    font-weight: 800;
+    /* font-size: 15px; */
+    /* text-shadow: 1px 1px rgb(0, 0, 0); */
   }
   
   .tag-btn{
@@ -60,7 +69,46 @@
     align-items: center;
   }
 
+  .icon-btn svg{
+      color: gray;
+  }
+  .icon-btn svg:hover{
+      color: red;
+  }
+
+
+
   .like-btn-txt{
     margin-left: 5px;
     font-weight: 500;
+  }
+
+  .like-btn-active{
+    animation: .5s linear burst; 
+  }
+
+  @keyframes burst{
+    0%,10%{
+        transform: scale(1);
+        opacity: .5;
+        color:lavender;
+    }
+    45%{
+        transform: scale(.2) rotate(30deg);
+        opacity: .75;
+    }
+    50%{
+        transform: scale(2) rotate(-37.5deg);
+        opacity: 1;
+        color: red;
+        text-shadow: 2px 2px 6px rgba(235, 9, 9, 0.5);
+    }
+    90%,95%{
+        transform: scale(1) rotate(10deg);
+        text-shadow: none;
+    }
+    100% {
+        transform: rotate(-2.5deg);
+    }
+
   }

@@ -9,21 +9,22 @@ import {
  
   import { FaHeart, FaRegHeart, FaPlus } from "react-icons/fa"
   import { AiFillHome, AiFillInfoCircle,AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
+  import { IoLogOut } from 'react-icons/io5'
 
 const Navbar = (props) => {
     const { auth, logout } = props
     const history = useNavigate()
     return (
         <ul>
-            <li><Link to="/home"><AiFillHome /> Home</Link></li>
-            <li><Link to="/about"><AiFillInfoCircle /> About</Link></li>
+            <li><Link to="/home"><AiFillHome /></Link></li>
+            <li><Link to="/about"><AiFillInfoCircle /></Link></li>
             {auth.isLoggedIn?(
                 <>
-                    <li><Link to="/likes"><FaHeart /> Likes</Link></li>
+                    <li><Link to="/likes"><FaHeart /></Link></li>
                     <li style={{float:"right"}}><Link to="/" onClick={()=>{
                         logout(history)
-                    }}><AiOutlineLogout /> Logout</Link></li>
-                    <li style={{float:"right"}}> <a><AiOutlineUser /> {auth.user.name}</a></li>
+                    }}><AiOutlineLogout /></Link></li>
+                    {/* <li style={{float:"right"}}> <a><AiOutlineUser /> {auth.user.name}</a></li> */}
                 </>
             ):(
                 <>

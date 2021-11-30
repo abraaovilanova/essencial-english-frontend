@@ -4,7 +4,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    margin-top: 0;
+    padding-bottom: 80px;
   }
   
   .main-text{
@@ -12,14 +13,12 @@
     flex-direction: column;
     justify-content: center;
     padding: 20px;
-    /* background-color: rgb(255, 194, 102); */
     min-height: 150px;
     max-width: 750px;
-    min-height: 200px;
+    min-height: 100px;
     text-align: center;
-    margin: 5px 5px;
+    margin: 20px 5px;
     border-radius: 20px;
-    /* box-shadow: 5px 5px rgb(224,224,224); */
     box-shadow: 5px 5px  rgb(255, 194, 102);
     background-color: blanchedalmond;
   }
@@ -27,16 +26,34 @@
   .main-text b{
     color: green;
     font-weight: 800;
-    /* font-size: 15px; */
-    /* text-shadow: 1px 1px rgb(0, 0, 0); */
   }
   
   .tag-btn{
     margin: 5px;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    box-shadow: 1px 1px rgb(114, 114, 114);
+    border-radius: 30px;
     cursor: pointer;
+  }
+
+  .back-btn{
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    box-shadow: 1px 1px rgb(214, 214, 214);
+    border-radius: 100%;
+    cursor: pointer;
+  }
+
+  .back-btn:hover{
+    background-color: crimson;
+    color: whitesmoke;
+
+  }
+
+  .active-tag{
+    font-weight: 500;
   }
   
   .tag-btn:hover{
@@ -48,8 +65,10 @@
     margin: 5px;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
+    box-shadow: 1px 1px  rgb(179, 179, 179);
+    font-weight: 400;
   }
   
   .add-btn:hover{
@@ -72,6 +91,7 @@
   .icon-btn svg{
       color: gray;
   }
+
   .icon-btn svg:hover{
       color: red;
   }

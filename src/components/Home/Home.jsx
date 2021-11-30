@@ -6,6 +6,7 @@ import './Home.css'
 import { SignUpAuthAction } from '../../redux/actions/authActions'
 
 import { FaHeart, FaRegHeart, FaPlus } from "react-icons/fa"
+import { AiOutlineClose } from "react-icons/ai"
 
 import { url } from '../../api/api'
 
@@ -22,6 +23,8 @@ const Home = (props)=>{
   const [like, setLike] = useState(false)
   const [showLike, setShowLike] = useState(false)
   const [randInt, setRandInt] = useState(0)
+  const [showTags, setShowTags] = useState(true)
+  const [selectedTag, setSelectedTag] = useState('')
 
 
 
@@ -113,9 +116,9 @@ const Home = (props)=>{
     return (
         <div className="Home">
           {
-            auth.isLoggedIn? <h1> Olá, <b style={{color:'rgb(255, 194, 102)'}}>{auth.user.name}</b> </h1> : ''
+            auth.isLoggedIn && !selectedTag ? <h2> Olá, <b style={{color:'rgb(255, 194, 102)'}}>{auth.user.name}</b> </h2> : ''
           }
-          
+          {showTags? 
            <div className="tags">
                   {tags.length? tags.map((tag,index) => {
                     const tagName = tag
@@ -128,13 +131,27 @@ const Home = (props)=>{
                         onClick={()=>{
                           setActive(index)
                           getSentenceByTag(tagName)
-                          
+                          setSelectedTag(tagName)
+                          setShowTags(false)
                           }}> 
                         {tag} 
                       </button>
                     )
                     }):''}
               </div>
+            :
+            <>
+              <button className="back-btn" onClick={()=>{
+                setShowTags(true)
+                setActive('')
+                setSelectedTag('')
+              }}><AiOutlineClose /></button>
+              <span className="active-tag">{selectedTag} </span>
+            </>
+          }
+          {
+            !showTags?
+                <>
                   <div className="main-text">
                     <h3>{sentence ? parse(sentence?.text) : ' '}</h3>
                     <div className="icons-btns">
@@ -165,7 +182,10 @@ const Home = (props)=>{
                   </div>
                   <br />
                   <button className="add-btn" onClick={nextSentence}>{ <FaPlus />} New sentence</button>
+                  </>
+                  :''}
            </div>
+           
     )
 }
 

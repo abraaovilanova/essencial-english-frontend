@@ -1,14 +1,15 @@
 .page-title{
-    color: rgb(255, 194, 102);
+    color: #d175b7;
 }
 .likes-page{
     margin: auto;
-    padding: 50px;
+    padding: 50px 50px 50px 0;
     max-width: 600px;
+    height: 100%;
     border-radius: 50px;
     box-shadow: 5px 5px rgb(224, 224, 224);
 }
 
 b {
-    color: rgb(255, 194, 102)
+  color: #d175b7;
 }

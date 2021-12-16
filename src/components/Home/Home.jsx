@@ -116,7 +116,7 @@ const Home = (props)=>{
     return (
         <div className="Home">
           {
-            auth.isLoggedIn && !selectedTag ? <h2> Olá, <b style={{color:'rgb(255, 194, 102)'}}>{auth.user.name}</b> </h2> : ''
+            auth.isLoggedIn && !selectedTag ? <h2> Olá, <b style={{color:'#d175b7'}}>{auth.user.name}</b> </h2> : ''
           }
           {showTags? 
            <div className="tags">

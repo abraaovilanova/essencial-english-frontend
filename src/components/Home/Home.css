@@ -19,29 +19,31 @@
     text-align: center;
     margin: 20px 5px;
     border-radius: 20px;
-    box-shadow: 5px 5px  rgb(255, 194, 102);
-    background-color: blanchedalmond;
+    background-color: rgb(29,29,29);
   }
 
   .main-text b{
-    color: green;
+    color: #d175b7;
     font-weight: 800;
   }
   
   .tag-btn{
+    background-color: #d175b7;
     margin: 5px;
-    padding: 10px;
+    padding: 20px;
     border: none;
-    box-shadow: 1px 1px rgb(114, 114, 114);
+    /* box-shadow: 1px 1px rgba(114, 114, 1141,0.8); */
     border-radius: 30px;
     cursor: pointer;
+    font-weight: 600;
+    color: #010402;
   }
 
   .back-btn{
     margin: 5px;
     padding: 10px;
     border: none;
-    box-shadow: 1px 1px rgb(214, 214, 214);
+    /* box-shadow: 1px 1px rgb(214, 214, 214); */
     border-radius: 100%;
     cursor: pointer;
   }
@@ -57,22 +59,24 @@
   }
   
   .tag-btn:hover{
-    background-color: rgba(255,194,102,0.8);
+    /* background-color: rgba(255,194,102,0.8); */
+    background-color: #d175b796;
   }
   
   .add-btn{
-    background-color: rgb(255, 194, 102);
+    background-color: #d175b7;
+    color: #010402;
     margin: 5px;
-    padding: 10px;
+    padding: 20px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: 1px 1px  rgb(179, 179, 179);
     font-weight: 400;
   }
   
   .add-btn:hover{
-    background-color: rgba(255,194,102,0.8);
+    /* background-color: rgba(255,194,102,0.8); */
+    background-color: #d175b796;
   }
 
   .icons-btns{

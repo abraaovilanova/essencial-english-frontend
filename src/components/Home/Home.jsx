@@ -116,7 +116,7 @@ const Home = (props)=>{
     return (
         <div className="Home">
           {
-            auth.isLoggedIn && !selectedTag ? <h2> Olá, <b style={{color:'#d175b7'}}>{auth.user.name}</b> </h2> : ''
+            auth.isLoggedIn && !selectedTag ? <h2> Hello <b style={{color:'#d175b7'}}>{auth.user.name}</b>! </h2> : ''
           }
           {showTags? 
            <div className="tags">
@@ -147,6 +147,7 @@ const Home = (props)=>{
                 setSelectedTag('')
               }}><AiOutlineClose /></button>
               <span className="active-tag">{selectedTag} </span>
+              <p className="small-txt">More than {sentences.length} sentences</p>
             </>
           }
           {

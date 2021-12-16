@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import './Home.css'
 import { SignUpAuthAction } from '../../redux/actions/authActions'
 
-import { FaHeart, FaRegHeart, FaPlus } from "react-icons/fa"
-import { AiOutlineClose } from "react-icons/ai"
+import { FaHeart, FaRegHeart, FaPlus,FaRegQuestionCircle } from "react-icons/fa"
+import { AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai"
 
 import { url } from '../../api/api'
 
@@ -166,6 +166,8 @@ const Home = (props)=>{
                               <span className="like-btn-txt" style={{color:'red'}}>
                                 {sentence.favoriteCount?sentence.favoriteCount:'0'}
                               </span>
+
+                              
                             </>
                             :
                             <>
@@ -179,6 +181,10 @@ const Home = (props)=>{
                         ('')
                         }
                       </div>
+                      <div class="tooltip">
+                         <FaRegQuestionCircle />
+                        <span class="tooltiptext">+information about the sentence... comming soon</span>
+                    </div>
                     </div>
                   </div>
                   <br />

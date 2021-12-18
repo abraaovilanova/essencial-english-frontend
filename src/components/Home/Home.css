@@ -195,7 +195,9 @@
   width: 140px;
   background-color: #555;
   color: #fff;
-  text-align: center;
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: small;
   padding: 10px 15px;
   border-radius: 6px;
 

@@ -185,7 +185,7 @@ const Home = (props)=>{
                       </div>
                       <div class="tooltip">
                          <FaRegQuestionCircle />
-                        <span class="tooltiptext">{sentence.information?sentence.information:'...'}</span>
+                        <span class="tooltiptext">{sentence.information? parse(sentence.information):'...'}</span>
                     </div>
                     </div>
                   </div>

@@ -5,9 +5,10 @@
     justify-content: center;
     align-items: center;
     margin-top: 0;
-    padding-bottom: 80px;
+    padding-bottom: 61px;
   }
-  
+
+ 
   .main-text{
     display: flex;
     flex-direction: column;
@@ -28,23 +29,40 @@
     border-bottom: 1px dotted #d175b7;
   }
   
+  .tags{
+    max-width: 900px;
+    background-color: #010402;
+    margin-bottom: 0;
+  }
   .tag-btn{
-    background-color: #d175b7;
+    /* text-overflow: ellipsis; */
+    height: 60px;
+    width: 200px;
+    /* background-color: #d175b7; */
+    background-color: rgb(29,29,29);
     margin: 5px;
     padding: 20px;
+    /* border: 3px solid #d175b7; */
     border: none;
-    /* box-shadow: 1px 1px rgba(114, 114, 1141,0.8); */
-    border-radius: 30px;
+    border-radius: 15px;
     cursor: pointer;
-    font-weight: 600;
-    color: rgb(29,29,29);
+    font-weight: 700;
+    font-size: medium;
+    color: whitesmoke;
+  }
+
+  .btn-txt{
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
   }
 
   .back-btn{
     margin: 5px;
     padding: 10px;
     border: none;
-    /* box-shadow: 1px 1px rgb(214, 214, 214); */
     border-radius: 100%;
     cursor: pointer;
   }
@@ -61,7 +79,7 @@
   
   .tag-btn:hover{
     /* background-color: rgba(255,194,102,0.8); */
-    background-color: #d175b796;
+    background-color: #d175b7;
   }
   
   .add-btn{
@@ -167,24 +185,24 @@
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-  margin-left: 40px;
+  /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
+  /* margin-left: 40px; */
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 180px;
+  width: 140px;
   background-color: #555;
   color: #fff;
   text-align: center;
-  padding: 5px 0;
+  padding: 10px 15px;
   border-radius: 6px;
 
   /* Position the tooltip text */
   position: absolute;
   z-index: 1;
-  bottom: -250%;
+  bottom: 130%;
   left: 50%;
   margin-left: -60px;
 
@@ -194,16 +212,16 @@
 }
 
 /* Tooltip arrow */
-/* .tooltip .tooltiptext::after {
+.tooltip .tooltiptext::after {
   content: "";
   position: absolute;
   top: 100%;
   left: 50%;
   margin-left: -5px;
-  border-width: -5px;
+  border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;
-} */
+  border-color: transparent transparent #555 transparent;
+}
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {

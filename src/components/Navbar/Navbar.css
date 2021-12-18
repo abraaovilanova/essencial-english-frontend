@@ -20,10 +20,11 @@ ul {
   
   li a:hover:not(.active) {
     background-color: #d175b7;
-    color: white;
-    border-radius: 50%;
+    color: #fff;
+    border-radius: 10%;
     font-weight: 500;
   }
+
   
   .active {
     background-color: #d175b7;

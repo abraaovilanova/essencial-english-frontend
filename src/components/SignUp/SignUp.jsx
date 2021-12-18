@@ -18,6 +18,7 @@ const SignUp = (props)=>{
 
     return (
         <div className="singup-pag">
+            <h3>Sign Up</h3>
             <form action="">
                 <label htmlFor="fname">Name:</label><br />
                 <input className="input-box" type="text" id="fname" name="fname" 

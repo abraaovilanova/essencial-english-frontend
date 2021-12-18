@@ -8,20 +8,24 @@ import { FaHeart, FaRegHeart, FaPlus } from "react-icons/fa"
 
 const LikePage = (param) =>{
     const { auth } = param
-    const [favoriteSentences, setFavoriteSentences] = useState([{text: '...'}])
+    const [favoriteSentences, setFavoriteSentences] = useState([{text: '...', tag: ''}])
     const [random, setRandom] = useState(0)
 
     const getRandomArbitrary = ()=> {
         const min = 0
         const max = favoriteSentences.length - 1
+        console.log(max)
         setRandom(Math.floor(Math.random() * (max - min) + min))
       }
 
-    console.log(auth.user._id)
+    // console.log(auth.user._id)
+    // console.log('aqui')
 
     const getFavoritesByUser = async () =>{
         const res = await axios.post(url + '/fav', {userId: auth.user._id})
-        setFavoriteSentences(res.data)
+        console.log(res.data.length? 'sim': 'não')
+        setFavoriteSentences(res.data.length? res.data : [{text: "You don't have fav sentences yet", tag: ''}])
+        console.log('aqui')
     }
 
     useEffect(()=>{

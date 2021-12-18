@@ -116,7 +116,7 @@ const Home = (props)=>{
     return (
         <div className="Home">
           {
-            auth.isLoggedIn && !selectedTag ? <h2> Hello <b style={{color:'#d175b7'}}>{auth.user.name}</b>! </h2> : ''
+            auth.isLoggedIn && !selectedTag ? <h2> Hello, <b style={{color:'#d175b7'}}>{auth.user.name}</b>! </h2> : ''
           }
           {showTags? 
            <div className="tags">
@@ -134,11 +134,13 @@ const Home = (props)=>{
                           setSelectedTag(tagName)
                           setShowTags(false)
                           }}> 
-                        {tag} 
+                        <span className="btn-txt">
+                          {tag} 
+                        </span>
                       </button>
                     )
                     }):''}
-              </div>
+            </div>
             :
             <>
               <button className="back-btn" onClick={()=>{
@@ -183,7 +185,7 @@ const Home = (props)=>{
                       </div>
                       <div class="tooltip">
                          <FaRegQuestionCircle />
-                        <span class="tooltiptext">+information about the sentence... comming soon</span>
+                        <span class="tooltiptext">{sentence.information?sentence.information:'...'}</span>
                     </div>
                     </div>
                   </div>

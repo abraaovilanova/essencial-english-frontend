@@ -1,14 +1,15 @@
-.page-title{
+/* .page-title{
     color: rgb(255, 194, 102);
-}
+} */
 .about{
     margin: auto;
     padding: 50px;
     max-width: 600px;
     border-radius: 50px;
-    box-shadow: 5px 5px rgb(224, 224, 224);
+    background-color: rgb(29,29,29);
+    /* box-shadow: 5px 5px rgb(224, 224, 224); */
 }
 
-b {
+/* b {
     color: rgb(255, 194, 102)
-}
+} */

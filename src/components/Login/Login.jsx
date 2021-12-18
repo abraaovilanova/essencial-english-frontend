@@ -21,6 +21,7 @@ const Login = (props)=>{
 
     return (
         <div className="login-pag">
+            <h3>Login</h3>
             <form action="">
                 <label htmlFor="fname">Email:</label><br />
                 <input className="input-box" type="text" id="fname" name="fname" 

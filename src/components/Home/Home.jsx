@@ -9,7 +9,7 @@ import { FaHeart, FaRegHeart, FaPlus,FaRegQuestionCircle } from "react-icons/fa"
 import { AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai"
 
 import { url } from '../../api/api'
-
+import TextCard from '../TextCard/TextCard'
 
 const Home = (props)=>{
 
@@ -155,40 +155,12 @@ const Home = (props)=>{
           {
             !showTags?
                 <>
-                  <div className="main-text">
-                    <h3>{sentence ? parse(sentence?.text) : ' '}</h3>
-                    <div className="icons-btns">
-                      <div className="icon-btn">
-                        {showLike && auth.isLoggedIn?
-                          (like?
-                          <>
-                            <FaHeart className='like-btn-active'
-                              style={{color:'red'}} 
-                              onClick={handleLikeBtn} /> 
-                              <span className="like-btn-txt" style={{color:'red'}}>
-                                {sentence.favoriteCount?sentence.favoriteCount:'0'}
-                              </span>
-
-                              
-                            </>
-                            :
-                            <>
-                              <FaRegHeart /* style={{color:'gray'}}*/ onClick={handleLikeBtn}/>
-                              <span className="like-btn-txt">
-                                {sentence.favoriteCount?sentence.favoriteCount:'0'}
-                                </span>
-                            </>  
-                          )
-                        :
-                        ('')
-                        }
-                      </div>
-                      <div class="tooltip">
-                         <FaRegQuestionCircle />
-                        <span class="tooltiptext">{sentence.information? parse(sentence.information):'...'}</span>
-                    </div>
-                    </div>
-                  </div>
+                 <TextCard 
+                    sentence={sentence? sentence : ' '} 
+                    showLike={showLike}
+                    like={like}
+                    handleLikeBtn={handleLikeBtn}
+                  />
                   <br />
                   <button className="add-btn" onClick={nextSentence}>{ <FaPlus />} New sentence</button>
                   </>
@@ -213,3 +185,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
+

@@ -19,7 +19,9 @@ const TagCard = ({
 
     return (
         <div className="tag-btn" onClick={handleOnClick}>
-            <h3 className="btn-txt">{tagName}</h3>
+            <div className="tag-header">
+                <p className="btn-txt">{tagName}</p>
+            </div>
         </div>
     )
 }

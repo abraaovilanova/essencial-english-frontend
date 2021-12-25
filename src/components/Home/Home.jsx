@@ -10,6 +10,7 @@ import { AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai"
 
 import { url } from '../../api/api'
 import TextCard from '../TextCard/TextCard'
+import TagCard from '../TagCard/TagCard'
 
 const Home = (props)=>{
 
@@ -123,21 +124,14 @@ const Home = (props)=>{
                   {tags.length? tags.map((tag,index) => {
                     const tagName = tag
                     return (
-                  
-                      <button 
-                        key={tagName}
-                        style={active === index ? { backgroundColor: 'rgb(255, 194, 102)' } : {}}
-                        className='tag-btn' 
-                        onClick={()=>{
-                          setActive(index)
-                          getSentenceByTag(tagName)
-                          setSelectedTag(tagName)
-                          setShowTags(false)
-                          }}> 
-                        <span className="btn-txt">
-                          {tag} 
-                        </span>
-                      </button>
+                      <TagCard 
+                        tagName={tagName}
+                        index={index}
+                        setActive={setActive}
+                        getSentenceByTag={getSentenceByTag}
+                        setSelectedTag={setSelectedTag}
+                        setShowTags={setShowTags}
+                      />
                     )
                     }):''}
             </div>

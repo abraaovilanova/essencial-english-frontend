@@ -21,6 +21,7 @@
     margin: 20px 20px;
     border-radius: 20px;
     background-color: rgb(29,29,29);
+    font-size: larger;
   }
 
   .main-text b{
@@ -32,32 +33,9 @@
   .tags{
     max-width: 900px;
     background-color: #010402;
-    margin-bottom: 0;
+    margin-bottom: 0px;
   }
-  .tag-btn{
-    /* text-overflow: ellipsis; */
-    height: 60px;
-    width: 200px;
-    /* background-color: #d175b7; */
-    background-color: rgb(29,29,29);
-    margin: 5px;
-    padding: 20px;
-    /* border: 3px solid #d175b7; */
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: medium;
-    color: whitesmoke;
-  }
-
-  .btn-txt{
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    display: block;
-    text-overflow: ellipsis;
-  }
+  
 
   .back-btn{
     margin: 5px;

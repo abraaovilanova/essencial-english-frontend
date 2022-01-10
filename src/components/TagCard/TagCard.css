@@ -1,8 +1,15 @@
 .tag-btn{
+<<<<<<< HEAD
     height: 80px;
     width: 160px;
     background-color: rgb(29,29,29);
     margin: 10px 10px;
+=======
+    /* text-overflow: ellipsis; */
+    width: 160px;
+    background-color: rgb(29,29,29);
+    margin: 5px 5px;
+>>>>>>> 0daa77940d72329d974359ce86d7aaedd73fd7b9
     padding: 20px;
     border: none;
     border-radius: 15px;
@@ -19,10 +26,11 @@
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    display: block;
+    /* display: block; */
     text-overflow: ellipsis;
     font-size: medium;
 }
+<<<<<<< HEAD
 
 
 .shaddow-progress{
@@ -35,3 +43,5 @@
   background-color: #d34ead;
   border-radius: 10px;
 }
+=======
+>>>>>>> 0daa77940d72329d974359ce86d7aaedd73fd7b9

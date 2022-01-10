@@ -6,7 +6,6 @@ import { FaHeart, FaRegHeart, FaPlus,FaRegQuestionCircle } from "react-icons/fa"
 import { AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai"
 
 const TextCard = ({ sentence, showLike, like, auth, handleLikeBtn}) => {
-    console.log()
     return (
         <div className="main-text">
             <h3>{parse(sentence.text)}</h3>

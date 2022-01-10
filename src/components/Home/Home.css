@@ -32,6 +32,11 @@
   
   .tags{
     max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     background-color: #010402;
     margin-bottom: 0px;
   }

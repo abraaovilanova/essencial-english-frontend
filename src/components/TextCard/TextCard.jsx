@@ -1,14 +1,15 @@
 import React from 'react'
 import parse from 'html-react-parser'
 import { connect } from 'react-redux'
+import './TextCard.css'
 
 import { FaHeart, FaRegHeart, FaPlus,FaRegQuestionCircle } from "react-icons/fa"
 import { AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai"
 
-const TextCard = ({ sentence, showLike, like, auth, handleLikeBtn}) => {
+const TextCard = ({ sentence, showLike, like, auth, userView, handleLikeBtn}) => {
     return (
-        <div className="main-text">
-            <h3>{parse(sentence.text)}</h3>
+        <div className="main-text" style={{border: userView? '2px solid #d5f591' : "rgb(29,29,29)"}}>
+            <h3 className={userView? 'user-view':''}>{parse(sentence.text)}</h3>
             <div className="icons-btns">
                       <div className="icon-btn">
                         {showLike && auth.isLoggedIn?

@@ -7,11 +7,10 @@ const TagCard = ({
     setActive,
     getSentenceByTag,
     setSelectedTag,
-    setShowTags
+    setShowTags,
+    tagPercent,
+    auth
 }) => {
-
-    const [rand, setRand] = useState(Math.floor(Math.random() * 100))
-
 
     const handleOnClick = () => {
         setActive(index)
@@ -23,11 +22,13 @@ const TagCard = ({
     return (
             <div className="tag-btn" onClick={handleOnClick}>
                 <h3 className="btn-txt">{tagName}</h3>
-                <div className="bar" style={{backgroundColor: "gray", borderRadius: "10px"}}>
-                    <div className="progressbar" style={{height:"24px", width:`${rand}%`, backgroundColor:"#d175b7", borderRadius: "10px"}}>
-                        {rand > 5? <div className="shaddow-progress"></div>: ''}
+                {auth?
+                    <div className="bar" style={{backgroundColor: "gray", borderRadius: "10px"}}>
+                        <div className="progressbar" style={{height:"24px", width:`${tagPercent*100}%`, backgroundColor:"#d175b7", borderRadius: "10px"}}>
+                            {tagPercent*100 > 5? <div className="shaddow-progress"></div>: ''}
+                        </div>
                     </div>
-                </div>
+                :''}
             </div>
     )
 }

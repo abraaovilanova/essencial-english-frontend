@@ -26,18 +26,43 @@ const Home = (props)=>{
   const [randInt, setRandInt] = useState(0)
   const [showTags, setShowTags] = useState(true)
   const [selectedTag, setSelectedTag] = useState('')
+  const [userTagPercent, setUserTagPercent] = useState('')
 
 
 
 
   useEffect(()=>{
-    axios.get(base_url +'/sentence/tags').then(res => {
+    axios.post(base_url +'/sentence/tags', {userId: auth.user._id}).then(res => {
       setTags(res.data.tags)
+      setUserTagPercent(res.data.userTagPercent)
     })
 
   },[])
 
-  const nextSentence = () => {
+
+
+  const handleBackBtn = async () =>{
+    setShowTags(true)
+    setActive('')
+    setSelectedTag('')
+    axios.post(base_url +'/sentence/tags', {userId: auth.user._id}).then(res => {
+      setTags(res.data.tags)
+      setUserTagPercent(res.data.userTagPercent)
+    })
+  }
+
+  const nextSentence = async () => {
+
+    if(!sentence.userViewList?.includes(auth.user._id)){
+      await axios.post(url + '/view/'+sentence._id,{
+        userId: auth.user._id 
+      })
+      const indexOfSentence = sentences.indexOf(sentence)
+      const newArray = [...sentences, {...sentence, userViewList:[...sentence.userViewList, auth.user._id]}]
+      newArray.splice(indexOfSentence, 1)
+      setSentences(newArray)
+    }
+
     const max = sentences.length
     const rand = Math.floor((Math.random()*(max)+0))
     const selectedSentence = sentences.length > 0 ? sentences[rand] : {
@@ -117,7 +142,7 @@ const Home = (props)=>{
     return (
         <div className="Home">
           {
-            auth.isLoggedIn && !selectedTag ? <h2> Hello, <b style={{color:'#d175b7'}}>{auth.user.name}</b>! </h2> : ''
+            auth.isLoggedIn && !selectedTag ? <h2> Hello, <b style={{color:'#d175b7'}}>{auth.user.name}</b> ! </h2> : ''
           }
           {showTags? 
            <div className="tags">
@@ -125,6 +150,8 @@ const Home = (props)=>{
                     const tagName = tag
                     return (
                       <TagCard 
+                        tagPercent={userTagPercent[tag]}
+                        auth = {auth.isLoggedIn}
                         tagName={tagName}
                         index={index}
                         setActive={setActive}
@@ -137,26 +164,24 @@ const Home = (props)=>{
             </div>
             :
             <>
-              <button className="back-btn" onClick={()=>{
-                setShowTags(true)
-                setActive('')
-                setSelectedTag('')
-              }}><AiOutlineClose /></button>
+              <button className="back-btn" onClick={handleBackBtn}><AiOutlineClose /></button>
               <span className="active-tag">{selectedTag} </span>
               <p className="small-txt">More than {sentences.length} sentences</p>
+              {/* porcentagem: {sentences.reduce((value, curr) => console.log(value, curr))} */}
             </>
           }
           {
             !showTags?
                 <>
-                 <TextCard 
+                 <TextCard
+                    userView={sentence.userViewList?.includes(auth.user._id)}
                     sentence={sentence? sentence : ' '} 
                     showLike={showLike}
                     like={like}
                     handleLikeBtn={handleLikeBtn}
                   />
                   <br />
-                  <button className="add-btn" onClick={nextSentence}>{ <FaPlus />} New sentence</button>
+                  <button className={sentence.userViewList?.includes(auth.user._id)? "add-btn-view":"add-btn"} onClick={nextSentence}>{ <FaPlus />} New sentence</button>
                   </>
                   :''}
            </div>

@@ -31,15 +31,12 @@
   }
   
   .tags{
-<<<<<<< HEAD
     max-width: 900px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-=======
->>>>>>> 0daa77940d72329d974359ce86d7aaedd73fd7b9
     background-color: #010402;
     margin-bottom: 0px;
     display: flex;
